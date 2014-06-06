@@ -9,6 +9,7 @@
 #import "BoxOfficeViewController.h"
 #import "MovieTableViewCell.h"
 #import "MovieDetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface BoxOfficeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,8 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self checkNetwork];
     [self loadDefaults];
     [self getDataFromApi];
+    [self pullToRefresh];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -77,6 +81,25 @@
     cell.movieTitleLabel.text = movies[@"title"];
     cell.movieSynopsisLabel.text = movies[@"synopsis"];
     
+    //load images asyc using the AFNetworking pod
+    NSURL *url = [NSURL URLWithString:[movies valueForKeyPath:@"posters.thumbnail"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+
+    //TODO: add a place holder image later
+    UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
+    
+    NSLog(@"logo url is %@", url);
+    
+    __weak UITableViewCell *weakCell = cell;
+    
+    [cell.imageView setImageWithURLRequest:request
+                          placeholderImage:placeholderImage
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       weakCell.imageView.image = image;
+                                       [weakCell setNeedsLayout];
+                                   } failure:nil];
+//    cell.movieImageView.image = weakCell.imageView.image;
     return cell;
 }
 
@@ -90,6 +113,31 @@
     
     [self.navigationController pushViewController:moviedetailsViewController animated:YES];
     
+    
+}
+
+- (void) pullToRefresh {
+    
+////    UITableViewController  *tableViewController = [[UITableViewController alloc]init];
+////    tableViewController.tableView = self.tableView;
+//    
+////    tableViewController.refreshControl = [[UIRefreshControl alloc]init];
+//    
+//    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+////    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"pull to refresh"]
+////    controller.refreshControl.attributedTitle = [NSAttributedString];
+//    
+//    [refreshControl addTarget:self action:@selector(getDataFromApi) forControlEvents:UIControlEventValueChanged];
+//    self.
+//    
+
+}
+
+- (void) loadThumbnailForUrl: (NSString *) url {
+    
+}
+
+- (void) checkNetwork {
     
 }
 
