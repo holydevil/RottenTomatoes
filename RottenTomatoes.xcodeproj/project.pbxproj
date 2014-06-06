@@ -28,6 +28,8 @@
 		D4DD0FEF19418EBA0041C984 /* add_ticket.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FEE19418EBA0041C984 /* add_ticket.png */; };
 		D4DD0FFA1941B3160041C984 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DD0FF81941B3160041C984 /* MovieTableViewCell.m */; };
 		D4DD0FFB1941B3160041C984 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FF91941B3160041C984 /* MovieTableViewCell.xib */; };
+		D4DD0FFF1941B88C0041C984 /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DD0FFD1941B88C0041C984 /* MovieDetailsViewController.m */; };
+		D4DD10001941B88C0041C984 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,9 @@
 		D4DD0FF71941B3160041C984 /* MovieTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
 		D4DD0FF81941B3160041C984 /* MovieTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
 		D4DD0FF91941B3160041C984 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
+		D4DD0FFC1941B88C0041C984 /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
+		D4DD0FFD1941B88C0041C984 /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
+		D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +188,9 @@
 				D4DD0FDF194187EC0041C984 /* TopDvdsViewController.h */,
 				D4DD0FE0194187EC0041C984 /* TopDvdsViewController.m */,
 				D4DD0FE1194187EC0041C984 /* TopDvdsViewController.xib */,
+				D4DD0FFC1941B88C0041C984 /* MovieDetailsViewController.h */,
+				D4DD0FFD1941B88C0041C984 /* MovieDetailsViewController.m */,
+				D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -277,6 +285,7 @@
 				D4DD0FFB1941B3160041C984 /* MovieTableViewCell.xib in Resources */,
 				D4DD0FED19418E770041C984 /* music_record.png in Resources */,
 				D4DD0FE3194187EC0041C984 /* TopDvdsViewController.xib in Resources */,
+				D4DD10001941B88C0041C984 /* MovieDetailsViewController.xib in Resources */,
 				D4DD0FEF19418EBA0041C984 /* add_ticket.png in Resources */,
 				D4DD0FBE1941854D0041C984 /* Images.xcassets in Resources */,
 				D4DD0FDE194187CF0041C984 /* BoxOfficeViewController.xib in Resources */,
@@ -335,6 +344,7 @@
 				D4DD0FE2194187EC0041C984 /* TopDvdsViewController.m in Sources */,
 				D4DD0FDD194187CF0041C984 /* BoxOfficeViewController.m in Sources */,
 				D4DD0FFA1941B3160041C984 /* MovieTableViewCell.m in Sources */,
+				D4DD0FFF1941B88C0041C984 /* MovieDetailsViewController.m in Sources */,
 				D4DD0FB81941854D0041C984 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
