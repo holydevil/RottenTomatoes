@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3D7A285045594D93AEDCC5DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A789A779ED4E0981E7CA51 /* libPods.a */; };
+		D49B376B1943C96600408BEF /* red_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376A1943C96600408BEF /* red_tomato.png */; };
+		D49B376E1943CDCD00408BEF /* popcorn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376C1943CDCD00408BEF /* popcorn_down.png */; };
+		D49B376F1943CDCD00408BEF /* popcorn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376D1943CDCD00408BEF /* popcorn_up.png */; };
 		D4DD0FAC1941854D0041C984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAB1941854D0041C984 /* Foundation.framework */; };
 		D4DD0FAE1941854D0041C984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAD1941854D0041C984 /* CoreGraphics.framework */; };
 		D4DD0FB01941854D0041C984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAF1941854D0041C984 /* UIKit.framework */; };
@@ -32,7 +35,7 @@
 		D4DD10001941B88C0041C984 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */; };
 		D4DD100219422A050041C984 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD100119422A050041C984 /* QuartzCore.framework */; };
 		D4DD1005194393A90041C984 /* green_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD1003194393A90041C984 /* green_tomato.png */; };
-		D4DD1006194393A90041C984 /* red_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD1004194393A90041C984 /* red_tomato.png */; };
+		D4DD1006194393A90041C984 /* red_tomato1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD1004194393A90041C984 /* red_tomato1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 /* Begin PBXFileReference section */
 		17DF59C2A2F44058BE9608A7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		91A789A779ED4E0981E7CA51 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D49B376A1943C96600408BEF /* red_tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_tomato.png; sourceTree = "<group>"; };
+		D49B376C1943CDCD00408BEF /* popcorn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popcorn_down.png; sourceTree = "<group>"; };
+		D49B376D1943CDCD00408BEF /* popcorn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popcorn_up.png; sourceTree = "<group>"; };
 		D4DD0FA81941854D0041C984 /* RottenTomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD0FAB1941854D0041C984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4DD0FAD1941854D0041C984 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -80,7 +86,7 @@
 		D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
 		D4DD100119422A050041C984 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4DD1003194393A90041C984 /* green_tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_tomato.png; sourceTree = "<group>"; };
-		D4DD1004194393A90041C984 /* red_tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_tomato.png; sourceTree = "<group>"; };
+		D4DD1004194393A90041C984 /* red_tomato1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_tomato1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,8 +212,11 @@
 		D4DD0FE519418D6A0041C984 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D49B376C1943CDCD00408BEF /* popcorn_down.png */,
+				D49B376D1943CDCD00408BEF /* popcorn_up.png */,
+				D49B376A1943C96600408BEF /* red_tomato.png */,
 				D4DD1003194393A90041C984 /* green_tomato.png */,
-				D4DD1004194393A90041C984 /* red_tomato.png */,
+				D4DD1004194393A90041C984 /* red_tomato1.png */,
 				D4DD0FEE19418EBA0041C984 /* add_ticket.png */,
 				D4DD0FEC19418E770041C984 /* music_record.png */,
 			);
@@ -292,15 +301,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DD0FB61941854D0041C984 /* InfoPlist.strings in Resources */,
-				D4DD1006194393A90041C984 /* red_tomato.png in Resources */,
+				D4DD1006194393A90041C984 /* red_tomato1.png in Resources */,
 				D4DD0FFB1941B3160041C984 /* MovieTableViewCell.xib in Resources */,
 				D4DD0FED19418E770041C984 /* music_record.png in Resources */,
 				D4DD0FE3194187EC0041C984 /* TopDvdsViewController.xib in Resources */,
+				D49B376B1943C96600408BEF /* red_tomato.png in Resources */,
 				D4DD10001941B88C0041C984 /* MovieDetailsViewController.xib in Resources */,
+				D49B376F1943CDCD00408BEF /* popcorn_up.png in Resources */,
 				D4DD0FEF19418EBA0041C984 /* add_ticket.png in Resources */,
 				D4DD0FBE1941854D0041C984 /* Images.xcassets in Resources */,
 				D4DD0FDE194187CF0041C984 /* BoxOfficeViewController.xib in Resources */,
 				D4DD1005194393A90041C984 /* green_tomato.png in Resources */,
+				D49B376E1943CDCD00408BEF /* popcorn_down.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

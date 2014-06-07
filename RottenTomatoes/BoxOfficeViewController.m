@@ -72,7 +72,8 @@
 
 
 - (void) getDataFromApi {
-    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+//    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+    NSString *url = @"http://127.0.0.1:8080/rotten.json";
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -90,7 +91,7 @@
 - (void) loadDefaults {
     self.title = @"Box Office";
     
-    self.tableView.rowHeight = 90;
+    self.tableView.rowHeight = 95;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -113,11 +114,30 @@
     
     //load images asyc using the AFNetworking pod
     NSURL *url = [NSURL URLWithString:[movie valueForKeyPath:@"posters.profile"]];
-
     //TODO: add a place holder image later
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
-
     [cell.movieImageView setImageWithURL:url placeholderImage:placeholderImage];
+    
+    // Tomatometer (critics) rating section
+    NSString *tomatoRating = [movie valueForKeyPath:@"ratings.critics_rating"];
+    cell.tomatometerLabel.text = [NSString stringWithFormat:@"%@%%",[movie valueForKeyPath:@"ratings.critics_score"]];
+    
+    if ([tomatoRating isEqualToString:@"Rotten"]) {
+        cell.tomatometerImage.image = [UIImage imageNamed:@"green_tomato"];
+    } else {
+        cell.tomatometerImage.image = [UIImage imageNamed:@"red_tomato"];
+    }
+    
+    // Audience rating section
+    NSString *audienceRating = [movie valueForKeyPath:@"ratings.audience_rating"];
+    cell.audienceLabel.text = [NSString stringWithFormat:@"%@%%",[movie valueForKeyPath:@"ratings.audience_score"]];
+    
+    if ([audienceRating isEqualToString:@"Spilled"]) {
+        cell.audienceImage.image = [UIImage imageNamed:@"popcorn_down"];
+    } else {
+        cell.audienceImage.image = [UIImage imageNamed:@"popcorn_up"];
+    }
+
     
     return cell;
 }
