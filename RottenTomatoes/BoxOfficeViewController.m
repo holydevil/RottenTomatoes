@@ -10,12 +10,16 @@
 #import "MovieTableViewCell.h"
 #import "MovieDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "MBProgressHUD.h"
+
 
 @interface BoxOfficeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property UIRefreshControl *refreshControl;
 
-@property NSArray *tableData;
 @property NSArray *moviesData;
+
+@property MBProgressHUD *hud;
 
 @end
 
@@ -31,14 +35,25 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    self.hud.labelText = @"loading";
+    [self.hud show:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self.hud hide:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self checkNetwork];
+    [self pullToRefresh];
     [self loadDefaults];
     [self getDataFromApi];
-    [self pullToRefresh];
-    
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -52,6 +67,7 @@
         
 //        NSLog(@"total enties are %d", self.moviesData.count);
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         
     }];
     
@@ -60,7 +76,7 @@
 - (void) loadDefaults {
     self.title = @"Box Office";
     
-    self.tableView.rowHeight = 97;
+    self.tableView.rowHeight = 90;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -75,21 +91,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableViewCell"];
     
-    NSDictionary *movies = self.moviesData[indexPath.row];
-//    NSLog(@"title = %@ and synopsis = %@", movies[@"title"],movies[@"synopsis"]);
+    NSDictionary *movie = self.moviesData[indexPath.row];
     
-    cell.movieTitleLabel.text = movies[@"title"];
-    cell.movieSynopsisLabel.text = movies[@"synopsis"];
+    cell.movieTitleLabel.text = movie[@"title"];
+    cell.movieSynopsisLabel.text = movie[@"synopsis"];
     
+#pragma mark -
+#pragma makr - Async image loading
     //load images asyc using the AFNetworking pod
-    NSURL *url = [NSURL URLWithString:[movies valueForKeyPath:@"posters.thumbnail"]];
+    NSURL *url = [NSURL URLWithString:[movie valueForKeyPath:@"posters.thumbnail"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
 
     //TODO: add a place holder image later
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
-    
-    NSLog(@"logo url is %@", url);
     
     __weak UITableViewCell *weakCell = cell;
     
@@ -99,9 +114,12 @@
                                        weakCell.imageView.image = image;
                                        [weakCell setNeedsLayout];
                                    } failure:nil];
-//    cell.movieImageView.image = weakCell.imageView.image;
+// this also works
+//    [cell.imageView setImageWithURL:url placeholderImage:placeholderImage];
+    
     return cell;
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -117,25 +135,11 @@
 }
 
 - (void) pullToRefresh {
-    
-////    UITableViewController  *tableViewController = [[UITableViewController alloc]init];
-////    tableViewController.tableView = self.tableView;
-//    
-////    tableViewController.refreshControl = [[UIRefreshControl alloc]init];
-//    
-//    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
-////    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"pull to refresh"]
-////    controller.refreshControl.attributedTitle = [NSAttributedString];
-//    
-//    [refreshControl addTarget:self action:@selector(getDataFromApi) forControlEvents:UIControlEventValueChanged];
-//    self.
-//    
-
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(getDataFromApi) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
-- (void) loadThumbnailForUrl: (NSString *) url {
-    
-}
 
 - (void) checkNetwork {
     
