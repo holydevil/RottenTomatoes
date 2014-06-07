@@ -30,36 +30,17 @@
 -(void)viewWillAppear:(BOOL)animated {
     self.title = self.movieData[@"title"];
     self.synopsisTextView.text = self.movieData[@"synopsis"];
-    NSArray *image = [[NSArray alloc]init];
-    image = self.movieData[@"posters"];
-    
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[image valueForKey:@"detailed"]]];
-    
-#pragma -
-#pragma Poster Image loading
     
     //load images asyc using the AFNetworking pod
-    NSURL *url = [NSURL URLWithString:[image valueForKey:@"original"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    
+    NSURL *url = [NSURL URLWithString:[self.movieData valueForKeyPath:@"posters.original"]];
+
     //TODO: add a place holder image later
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
     
+    [self.posterImageView setImageWithURL:url placeholderImage:placeholderImage];
+    
     NSLog(@"logo url is %@", url);
-    
-    __weak UIImageView *weakImage = self.posterImageView;
 
-[weakImage setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-    weakImage.image = image;
-} failure:nil];
-
-#pragma end
-    
-    self.posterImageView.image = [UIImage imageWithData:imageData];
-//    self.posterImageView.image = [UIImage ]
-    
-//    NSLog(@"%@ synopsis = ", self.movieData[@"synopsis"]);
 }
 
 - (void)viewDidLoad

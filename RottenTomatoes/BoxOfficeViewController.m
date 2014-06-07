@@ -57,6 +57,20 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+
+- (void) checkNetwork {
+    
+}
+
+
+- (void) pullToRefresh {
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(getDataFromApi) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+}
+
+
+
 - (void) getDataFromApi {
     NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
     
@@ -88,6 +102,7 @@
     return [self.moviesData count];
 }
 
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableViewCell"];
     
@@ -96,26 +111,13 @@
     cell.movieTitleLabel.text = movie[@"title"];
     cell.movieSynopsisLabel.text = movie[@"synopsis"];
     
-#pragma mark -
-#pragma makr - Async image loading
     //load images asyc using the AFNetworking pod
-    NSURL *url = [NSURL URLWithString:[movie valueForKeyPath:@"posters.thumbnail"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
+    NSURL *url = [NSURL URLWithString:[movie valueForKeyPath:@"posters.profile"]];
 
     //TODO: add a place holder image later
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
-    
-    __weak UITableViewCell *weakCell = cell;
-    
-    [cell.imageView setImageWithURLRequest:request
-                          placeholderImage:placeholderImage
-                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       weakCell.imageView.image = image;
-                                       [weakCell setNeedsLayout];
-                                   } failure:nil];
-// this also works
-//    [cell.imageView setImageWithURL:url placeholderImage:placeholderImage];
+
+    [cell.movieImageView setImageWithURL:url placeholderImage:placeholderImage];
     
     return cell;
 }
@@ -133,18 +135,6 @@
     
     
 }
-
-- (void) pullToRefresh {
-    self.refreshControl = [[UIRefreshControl alloc]init];
-    [self.refreshControl addTarget:self action:@selector(getDataFromApi) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
-}
-
-
-- (void) checkNetwork {
-    
-}
-
 
 - (void)didReceiveMemoryWarning
 {
