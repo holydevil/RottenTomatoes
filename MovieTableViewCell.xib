@@ -64,7 +64,7 @@ lines</string>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.13636303838702371" green="0.13630458545308244" blue="0.15005181760204078" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" cyan="0.81000000000000005" magenta="0.76000000000000001" yellow="0.70999999999999996" black="0.56000000000000005" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
             </tableViewCellContentView>
             <connections>
                 <outlet property="audienceImage" destination="dKi-33-wxM" id="iYZ-tm-el3"/>

@@ -14,7 +14,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-FDStatusBarNotifierView.xcscheme</key>
+		<key>Pods-CWStatusBarNotification.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13AD41240E8C4FBCA48AB26F</key>
+		<key>318BC71FC052499287F89FDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4C70526159284BFF932DE4D3</key>
+		<key>52F8C08B54BD4989ACA05C38</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>786524BED045456282E73173</key>
+		<key>80C3627A541240E18F7AF016</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>96810D4BE1F049018E36087D</key>
+		<key>861B2699B7644C0FB4221C09</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A08A97DCEDDF404CAE65F430</key>
+		<key>EEF5D1408D5C43B481793614</key>
 		<dict>
 			<key>primary</key>
 			<true/>

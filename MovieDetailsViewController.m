@@ -33,21 +33,44 @@
     self.title = self.movieData[@"title"];
     self.movieTitleLabel.text = self.movieData[@"title"];
     self.synopsisLabel.text = self.movieData[@"synopsis"];
+//    self.synopsisLabel.adjustsFontSizeToFitWidth = YES;
+//    self.synopsisLabel.frame = CGRectMake(20,20,200,800);
+    [self.synopsisLabel sizeToFit];
     
-    //load images asyc using the AFNetworking pod
-    NSURL *url = [NSURL URLWithString:[self.movieData valueForKeyPath:@"posters.detailed"]];
+    //load the low res image first
+    [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.detailed"] into:self.posterImageView];
+    
+    NSLog(@"view will appear");
+
+}
+
+
+- (void)loadImageFromUrl: (NSString *) imageURL into: (UIImageView *) imageView{
+    // uses AFnetworking async to load images
+    NSURL *url = [NSURL URLWithString:imageURL];
+    
     //TODO: add a place holder image later
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
-    [self.posterImageView setImageWithURL:url placeholderImage:placeholderImage];
     
-    NSLog(@"logo url is %@", url);
+    [imageView setImageWithURL:url placeholderImage:placeholderImage];
+    
+    NSLog(@"loading image %@", url);
+    
+}
 
+-(void)viewDidAppear:(BOOL)animated {
+    NSLog(@"view did appear");
+    
+    //load the high res poster image after teh view loads
+    [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.original"] into:self.posterImageView];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.movieScrollView.autoresizesSubviews = YES;
+    self.movieScrollView.contentMode = UIViewContentModeScaleToFill;
+    
 }
 
 - (void)didReceiveMemoryWarning

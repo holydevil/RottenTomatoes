@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MovieDetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIScrollView *movieScrollView;
 @property NSDictionary *movieData;
 @end

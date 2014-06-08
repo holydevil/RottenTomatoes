@@ -11,18 +11,19 @@
 #import "MovieDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MBProgressHUD.h"
-#import "FDStatusBarNotifierView.h"
 #import "Reachability.h"
+#import "CWStatusBarNotification.h"
 
 @interface BoxOfficeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property UIRefreshControl *refreshControl;
-@property BOOL isOnline;
-
 @property NSArray *moviesData;
 
-@property MBProgressHUD *hud;
+//notification bar
+@property CWStatusBarNotification *notification;
 
+//loading HUD
+@property MBProgressHUD *hud;
 
 @end
 
@@ -33,6 +34,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self checkNetwork];
 
     }
     return self;
@@ -52,7 +54,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self checkNetwork];
     [self pullToRefresh];
     [self loadDefaults];
     [self getDataFromApi];
@@ -62,24 +63,22 @@
 
 #pragma mark - Reachability
 
-- (BOOL) checkNetwork {
+- (void) checkNetwork {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
 
     reach.reachableBlock = ^(Reachability *reach) {
         NSLog(@"Internet reachable");
-        self.isOnline = YES;
+        [self hideNetworkErrorNotification];
     };
     
     reach.unreachableBlock = ^(Reachability*reach) {
         NSLog(@"UNREACHABLE!");
-        self.isOnline = NO;
+        [self showNetworkErrorNotification:@"Internet not found"];
     };
     
     [reach startNotifier];
-    
-    return self.isOnline;
     
 }
 
@@ -88,18 +87,23 @@
     Reachability * reach = [note object];
     
     if([reach isReachable]) {
-        NSLog(@"Notification Says Reachable");
+        [self hideNetworkErrorNotification ];
     } else {
-        NSLog(@"Notification Says UNREACHABLE");
+        [self showNetworkErrorNotification:@"Internet not found"];
     }
 }
 
-- (void) showNetworkError {
+- (void) showNetworkErrorNotification: (NSString *) withMessage {
+    //change label and background colour of notification
+    self.notification.notificationLabelBackgroundColor = [UIColor colorWithRed:0.91 green:0.25 blue:0.11 alpha:1];
+    self.notification.notificationLabelTextColor = [UIColor colorWithRed:0.95 green:0.95 blue:1 alpha:1];
     
+    [self.notification displayNotificationWithMessage:withMessage completion:nil];
+
 }
 
-- (void) hideNetworkError {
-    
+- (void) hideNetworkErrorNotification {
+    [self.notification dismissNotification];
 }
 
 
@@ -111,27 +115,26 @@
     [self.tableView addSubview:self.refreshControl];
 }
 
+#pragma mark - Call API to get data
+
 - (void) getDataFromApi {
-    if ([self checkNetwork]) {
-        //    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
-        NSString *url = @"http://127.0.0.1:8080/rotten.json";
+    
+    //    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+    NSString *url = @"http://127.0.0.1:8080/rotten.json";
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        self.moviesData = [object objectForKey:@"movies"];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            self.moviesData = [object objectForKey:@"movies"];
-            
-            //        NSLog(@"total enties are %d", self.moviesData.count);
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-            
-        }];
-    } else {
-        NSLog(@"Internet not found");
-    }
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+        
+    }];
     
 }
 
+#pragma mark - Load defaults
 - (void) loadDefaults {
     self.title = @"Box Office";
     
@@ -140,8 +143,13 @@
     self.tableView.dataSource = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:@"MovieTableViewCell"];
+    
+    //set notification bar defaults
+    self.notification = [CWStatusBarNotification new];
+    
 }
 
+#pragma mark - Table methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.moviesData count];
