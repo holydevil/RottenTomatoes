@@ -11,7 +11,7 @@
 #import "MovieDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MBProgressHUD.h"
-
+#import "AFNetworkReachabilityManager.h"
 
 @interface BoxOfficeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,6 +59,9 @@
 
 
 - (void) checkNetwork {
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"Reachability %@", AFStringFromNetworkReachabilityStatus(status));
+    }];
     
 }
 
@@ -91,7 +94,7 @@
 - (void) loadDefaults {
     self.title = @"Box Office";
     
-    self.tableView.rowHeight = 95;
+    self.tableView.rowHeight = 92;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -138,6 +141,12 @@
         cell.audienceImage.image = [UIImage imageNamed:@"popcorn_up"];
     }
 
+    // MPAA rating
+    cell.mpaaRatingLabel.text = [movie valueForKeyPath:@"mpaa_rating"];
+    
+    UIView *cellBackgroundView = [[UIView alloc]init];
+    [cellBackgroundView setBackgroundColor:[UIColor colorWithRed:0.61 green:0.62 blue:0.65 alpha:1]];
+    [cell setSelectedBackgroundView:cellBackgroundView];
     
     return cell;
 }

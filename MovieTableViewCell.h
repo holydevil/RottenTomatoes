@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *tomatometerLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *audienceImage;
 @property (weak, nonatomic) IBOutlet UILabel *audienceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mpaaRatingLabel;
 
 @end

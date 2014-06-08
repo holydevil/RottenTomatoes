@@ -35,7 +35,6 @@
 		D4DD10001941B88C0041C984 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */; };
 		D4DD100219422A050041C984 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD100119422A050041C984 /* QuartzCore.framework */; };
 		D4DD1005194393A90041C984 /* green_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD1003194393A90041C984 /* green_tomato.png */; };
-		D4DD1006194393A90041C984 /* red_tomato1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD1004194393A90041C984 /* red_tomato1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +85,6 @@
 		D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
 		D4DD100119422A050041C984 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4DD1003194393A90041C984 /* green_tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_tomato.png; sourceTree = "<group>"; };
-		D4DD1004194393A90041C984 /* red_tomato1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_tomato1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,7 +214,6 @@
 				D49B376D1943CDCD00408BEF /* popcorn_up.png */,
 				D49B376A1943C96600408BEF /* red_tomato.png */,
 				D4DD1003194393A90041C984 /* green_tomato.png */,
-				D4DD1004194393A90041C984 /* red_tomato1.png */,
 				D4DD0FEE19418EBA0041C984 /* add_ticket.png */,
 				D4DD0FEC19418E770041C984 /* music_record.png */,
 			);
@@ -301,7 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DD0FB61941854D0041C984 /* InfoPlist.strings in Resources */,
-				D4DD1006194393A90041C984 /* red_tomato1.png in Resources */,
 				D4DD0FFB1941B3160041C984 /* MovieTableViewCell.xib in Resources */,
 				D4DD0FED19418E770041C984 /* music_record.png in Resources */,
 				D4DD0FE3194187EC0041C984 /* TopDvdsViewController.xib in Resources */,

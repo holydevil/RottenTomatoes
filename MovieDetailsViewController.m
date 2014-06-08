@@ -10,8 +10,10 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface MovieDetailsViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *synopsisTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
+@property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
+@property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
+
 
 @end
 
@@ -29,14 +31,13 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     self.title = self.movieData[@"title"];
-    self.synopsisTextView.text = self.movieData[@"synopsis"];
+    self.movieTitleLabel.text = self.movieData[@"title"];
+    self.synopsisLabel.text = self.movieData[@"synopsis"];
     
     //load images asyc using the AFNetworking pod
-    NSURL *url = [NSURL URLWithString:[self.movieData valueForKeyPath:@"posters.original"]];
-
+    NSURL *url = [NSURL URLWithString:[self.movieData valueForKeyPath:@"posters.detailed"]];
     //TODO: add a place holder image later
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
-    
     [self.posterImageView setImageWithURL:url placeholderImage:placeholderImage];
     
     NSLog(@"logo url is %@", url);

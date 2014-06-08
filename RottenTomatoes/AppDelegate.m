@@ -36,6 +36,19 @@
     
     self.window.rootViewController = tabBarController;
     
+    
+    //Change font for Navigator bar Title
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light"  size:17.0f]}];
+    //Change font for Navigator bar (back) button
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light"  size:12.0f]} forState:UIControlStateNormal];
+    
+//    NSArray *fonts = [UIFont fontNamesForFamilyName:@"Helvetica Neue"];
+//    for(NSString *string in fonts){
+//        NSLog(@"%@", string);
+//    }
+    
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
