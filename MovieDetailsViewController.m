@@ -33,8 +33,6 @@
     self.title = self.movieData[@"title"];
     self.movieTitleLabel.text = self.movieData[@"title"];
     self.synopsisLabel.text = self.movieData[@"synopsis"];
-//    self.synopsisLabel.adjustsFontSizeToFitWidth = YES;
-//    self.synopsisLabel.frame = CGRectMake(20,20,200,800);
     [self.synopsisLabel sizeToFit];
     
     //load the low res image first
