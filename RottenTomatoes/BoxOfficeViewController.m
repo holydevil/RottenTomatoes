@@ -119,8 +119,8 @@
 
 - (void) getDataFromApi {
     
-    //    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
-    NSString *url = @"http://127.0.0.1:8080/rotten.json";
+    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+//    NSString *url = @"http://127.0.0.1:8080/rotten.json";
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
