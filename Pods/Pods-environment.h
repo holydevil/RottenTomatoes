@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_AMScrollingNavbar 0
 #define COCOAPODS_VERSION_PATCH_AMScrollingNavbar 0
 
+// FDStatusBarNotifierView
+#define COCOAPODS_POD_AVAILABLE_FDStatusBarNotifierView
+#define COCOAPODS_VERSION_MAJOR_FDStatusBarNotifierView 0
+#define COCOAPODS_VERSION_MINOR_FDStatusBarNotifierView 1
+#define COCOAPODS_VERSION_PATCH_FDStatusBarNotifierView 2
+
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0

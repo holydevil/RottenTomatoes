@@ -11,15 +11,18 @@
 #import "MovieDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MBProgressHUD.h"
-#import "AFNetworkReachabilityManager.h"
+#import "FDStatusBarNotifierView.h"
+#import "Reachability.h"
 
 @interface BoxOfficeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property UIRefreshControl *refreshControl;
+@property BOOL isOnline;
 
 @property NSArray *moviesData;
 
 @property MBProgressHUD *hud;
+
 
 @end
 
@@ -57,14 +60,50 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+#pragma mark - Reachability
 
-- (void) checkNetwork {
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        NSLog(@"Reachability %@", AFStringFromNetworkReachabilityStatus(status));
-    }];
+- (BOOL) checkNetwork {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+
+    reach.reachableBlock = ^(Reachability *reach) {
+        NSLog(@"Internet reachable");
+        self.isOnline = YES;
+    };
+    
+    reach.unreachableBlock = ^(Reachability*reach) {
+        NSLog(@"UNREACHABLE!");
+        self.isOnline = NO;
+    };
+    
+    [reach startNotifier];
+    
+    return self.isOnline;
     
 }
 
+-(void)reachabilityChanged:(NSNotification*)note{
+    
+    Reachability * reach = [note object];
+    
+    if([reach isReachable]) {
+        NSLog(@"Notification Says Reachable");
+    } else {
+        NSLog(@"Notification Says UNREACHABLE");
+    }
+}
+
+- (void) showNetworkError {
+    
+}
+
+- (void) hideNetworkError {
+    
+}
+
+
+#pragma mark - Pull to Refresh
 
 - (void) pullToRefresh {
     self.refreshControl = [[UIRefreshControl alloc]init];
@@ -72,22 +111,24 @@
     [self.tableView addSubview:self.refreshControl];
 }
 
-
-
 - (void) getDataFromApi {
-//    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
-    NSString *url = @"http://127.0.0.1:8080/rotten.json";
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        self.moviesData = [object objectForKey:@"movies"];
+    if ([self checkNetwork]) {
+        //    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+        NSString *url = @"http://127.0.0.1:8080/rotten.json";
         
-//        NSLog(@"total enties are %d", self.moviesData.count);
-        [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
-        
-    }];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            self.moviesData = [object objectForKey:@"movies"];
+            
+            //        NSLog(@"total enties are %d", self.moviesData.count);
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+            
+        }];
+    } else {
+        NSLog(@"Internet not found");
+    }
     
 }
 

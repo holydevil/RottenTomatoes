@@ -11,6 +11,7 @@
 		D49B376B1943C96600408BEF /* red_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376A1943C96600408BEF /* red_tomato.png */; };
 		D49B376E1943CDCD00408BEF /* popcorn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376C1943CDCD00408BEF /* popcorn_down.png */; };
 		D49B376F1943CDCD00408BEF /* popcorn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376D1943CDCD00408BEF /* popcorn_up.png */; };
+		D49B37FB1944F6AC00408BEF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D49B37FA1944F6AC00408BEF /* Reachability.m */; };
 		D4DD0FAC1941854D0041C984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAB1941854D0041C984 /* Foundation.framework */; };
 		D4DD0FAE1941854D0041C984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAD1941854D0041C984 /* CoreGraphics.framework */; };
 		D4DD0FB01941854D0041C984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAF1941854D0041C984 /* UIKit.framework */; };
@@ -53,6 +54,8 @@
 		D49B376A1943C96600408BEF /* red_tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_tomato.png; sourceTree = "<group>"; };
 		D49B376C1943CDCD00408BEF /* popcorn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popcorn_down.png; sourceTree = "<group>"; };
 		D49B376D1943CDCD00408BEF /* popcorn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popcorn_up.png; sourceTree = "<group>"; };
+		D49B37F91944F6AC00408BEF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		D49B37FA1944F6AC00408BEF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D4DD0FA81941854D0041C984 /* RottenTomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD0FAB1941854D0041C984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4DD0FAD1941854D0041C984 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -113,9 +116,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D49B37F51944F1F100408BEF /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				D49B37F91944F6AC00408BEF /* Reachability.h */,
+				D49B37FA1944F6AC00408BEF /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		D4DD0F9F1941854D0041C984 = {
 			isa = PBXGroup;
 			children = (
+				D49B37F51944F1F100408BEF /* Reachability */,
 				D4DD0FE519418D6A0041C984 /* Images */,
 				D4DD0FE4194187F30041C984 /* ViewControllers */,
 				D4DD0FB11941854D0041C984 /* RottenTomatoes */,
@@ -363,6 +376,7 @@
 				D4DD0FBC1941854D0041C984 /* AppDelegate.m in Sources */,
 				D4DD0FE2194187EC0041C984 /* TopDvdsViewController.m in Sources */,
 				D4DD0FDD194187CF0041C984 /* BoxOfficeViewController.m in Sources */,
+				D49B37FB1944F6AC00408BEF /* Reachability.m in Sources */,
 				D4DD0FFA1941B3160041C984 /* MovieTableViewCell.m in Sources */,
 				D4DD0FFF1941B88C0041C984 /* MovieDetailsViewController.m in Sources */,
 				D4DD0FB81941854D0041C984 /* main.m in Sources */,
