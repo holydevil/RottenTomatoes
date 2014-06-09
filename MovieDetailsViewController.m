@@ -37,8 +37,6 @@
     
     //load the low res image first
     [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.detailed"] into:self.posterImageView];
-    
-    NSLog(@"view will appear");
 
 }
 
@@ -52,13 +50,9 @@
     
     [imageView setImageWithURL:url placeholderImage:placeholderImage];
     
-    NSLog(@"loading image %@", url);
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    NSLog(@"view did appear");
-    
     //load the high res poster image after teh view loads
     [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.original"] into:self.posterImageView];
 }
