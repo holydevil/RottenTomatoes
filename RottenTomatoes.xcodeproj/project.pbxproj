@@ -12,6 +12,7 @@
 		D49B376E1943CDCD00408BEF /* popcorn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376C1943CDCD00408BEF /* popcorn_down.png */; };
 		D49B376F1943CDCD00408BEF /* popcorn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B376D1943CDCD00408BEF /* popcorn_up.png */; };
 		D49B37FB1944F6AC00408BEF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D49B37FA1944F6AC00408BEF /* Reachability.m */; };
+		D49B37FF19457DE300408BEF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D49B37FE19457DE300408BEF /* Icon.png */; };
 		D4DD0FAC1941854D0041C984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAB1941854D0041C984 /* Foundation.framework */; };
 		D4DD0FAE1941854D0041C984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAD1941854D0041C984 /* CoreGraphics.framework */; };
 		D4DD0FB01941854D0041C984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD0FAF1941854D0041C984 /* UIKit.framework */; };
@@ -56,6 +57,7 @@
 		D49B376D1943CDCD00408BEF /* popcorn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popcorn_up.png; sourceTree = "<group>"; };
 		D49B37F91944F6AC00408BEF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D49B37FA1944F6AC00408BEF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D49B37FE19457DE300408BEF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D4DD0FA81941854D0041C984 /* RottenTomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD0FAB1941854D0041C984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4DD0FAD1941854D0041C984 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -223,6 +225,7 @@
 		D4DD0FE519418D6A0041C984 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D49B37FE19457DE300408BEF /* Icon.png */,
 				D49B376C1943CDCD00408BEF /* popcorn_down.png */,
 				D49B376D1943CDCD00408BEF /* popcorn_up.png */,
 				D49B376A1943C96600408BEF /* red_tomato.png */,
@@ -317,6 +320,7 @@
 				D49B376B1943C96600408BEF /* red_tomato.png in Resources */,
 				D4DD10001941B88C0041C984 /* MovieDetailsViewController.xib in Resources */,
 				D49B376F1943CDCD00408BEF /* popcorn_up.png in Resources */,
+				D49B37FF19457DE300408BEF /* Icon.png in Resources */,
 				D4DD0FEF19418EBA0041C984 /* add_ticket.png in Resources */,
 				D4DD0FBE1941854D0041C984 /* Images.xcassets in Resources */,
 				D4DD0FDE194187CF0041C984 /* BoxOfficeViewController.xib in Resources */,
@@ -495,7 +499,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17DF59C2A2F44058BE9608A7 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RottenTomatoes/RottenTomatoes-Prefix.pch";
@@ -509,7 +512,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17DF59C2A2F44058BE9608A7 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RottenTomatoes/RottenTomatoes-Prefix.pch";
