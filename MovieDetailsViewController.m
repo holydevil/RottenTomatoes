@@ -35,6 +35,17 @@
     self.synopsisLabel.text = self.movieData[@"synopsis"];
     [self.synopsisLabel sizeToFit];
     
+    //Resizeable label
+    CGRect titleLabelBounds = self.synopsisLabel.bounds;
+    titleLabelBounds.size.height = CGFLOAT_MAX;
+    
+    CGRect minimumTextRect = [self.synopsisLabel textRectForBounds:titleLabelBounds limitedToNumberOfLines:2];
+    
+    CGFloat titleLabelHeightDelta = minimumTextRect.size.height - self.synopsisLabel.frame.size.height;
+    CGRect titleFrame = self.synopsisLabel.frame;
+    titleFrame.size.height += titleLabelHeightDelta;
+    self.synopsisLabel.frame = titleFrame;
+    
     //load the low res image first
     [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.detailed"] into:self.posterImageView];
 

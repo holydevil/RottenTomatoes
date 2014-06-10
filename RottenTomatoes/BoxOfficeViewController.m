@@ -219,7 +219,6 @@
     
     [self.navigationController pushViewController:moviedetailsViewController animated:YES];
     
-    
 }
 
 - (void)didReceiveMemoryWarning
