@@ -27,8 +27,6 @@
 		D4DD0FD11941854D0041C984 /* RottenTomatoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DD0FD01941854D0041C984 /* RottenTomatoesTests.m */; };
 		D4DD0FDD194187CF0041C984 /* BoxOfficeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DD0FDB194187CF0041C984 /* BoxOfficeViewController.m */; };
 		D4DD0FDE194187CF0041C984 /* BoxOfficeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FDC194187CF0041C984 /* BoxOfficeViewController.xib */; };
-		D4DD0FE2194187EC0041C984 /* TopDvdsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DD0FE0194187EC0041C984 /* TopDvdsViewController.m */; };
-		D4DD0FE3194187EC0041C984 /* TopDvdsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FE1194187EC0041C984 /* TopDvdsViewController.xib */; };
 		D4DD0FED19418E770041C984 /* music_record.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FEC19418E770041C984 /* music_record.png */; };
 		D4DD0FEF19418EBA0041C984 /* add_ticket.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD0FEE19418EBA0041C984 /* add_ticket.png */; };
 		D4DD0FFA1941B3160041C984 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DD0FF81941B3160041C984 /* MovieTableViewCell.m */; };
@@ -77,9 +75,6 @@
 		D4DD0FDA194187CF0041C984 /* BoxOfficeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoxOfficeViewController.h; path = RottenTomatoes/BoxOfficeViewController.h; sourceTree = "<group>"; };
 		D4DD0FDB194187CF0041C984 /* BoxOfficeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoxOfficeViewController.m; path = RottenTomatoes/BoxOfficeViewController.m; sourceTree = "<group>"; };
 		D4DD0FDC194187CF0041C984 /* BoxOfficeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BoxOfficeViewController.xib; path = RottenTomatoes/BoxOfficeViewController.xib; sourceTree = "<group>"; };
-		D4DD0FDF194187EC0041C984 /* TopDvdsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopDvdsViewController.h; path = RottenTomatoes/TopDvdsViewController.h; sourceTree = "<group>"; };
-		D4DD0FE0194187EC0041C984 /* TopDvdsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopDvdsViewController.m; path = RottenTomatoes/TopDvdsViewController.m; sourceTree = "<group>"; };
-		D4DD0FE1194187EC0041C984 /* TopDvdsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopDvdsViewController.xib; path = RottenTomatoes/TopDvdsViewController.xib; sourceTree = "<group>"; };
 		D4DD0FEC19418E770041C984 /* music_record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music_record.png; sourceTree = "<group>"; };
 		D4DD0FEE19418EBA0041C984 /* add_ticket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_ticket.png; sourceTree = "<group>"; };
 		D4DD0FF71941B3160041C984 /* MovieTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
@@ -212,9 +207,6 @@
 				D4DD0FDA194187CF0041C984 /* BoxOfficeViewController.h */,
 				D4DD0FDB194187CF0041C984 /* BoxOfficeViewController.m */,
 				D4DD0FDC194187CF0041C984 /* BoxOfficeViewController.xib */,
-				D4DD0FDF194187EC0041C984 /* TopDvdsViewController.h */,
-				D4DD0FE0194187EC0041C984 /* TopDvdsViewController.m */,
-				D4DD0FE1194187EC0041C984 /* TopDvdsViewController.xib */,
 				D4DD0FFC1941B88C0041C984 /* MovieDetailsViewController.h */,
 				D4DD0FFD1941B88C0041C984 /* MovieDetailsViewController.m */,
 				D4DD0FFE1941B88C0041C984 /* MovieDetailsViewController.xib */,
@@ -316,7 +308,6 @@
 				D4DD0FB61941854D0041C984 /* InfoPlist.strings in Resources */,
 				D4DD0FFB1941B3160041C984 /* MovieTableViewCell.xib in Resources */,
 				D4DD0FED19418E770041C984 /* music_record.png in Resources */,
-				D4DD0FE3194187EC0041C984 /* TopDvdsViewController.xib in Resources */,
 				D49B376B1943C96600408BEF /* red_tomato.png in Resources */,
 				D4DD10001941B88C0041C984 /* MovieDetailsViewController.xib in Resources */,
 				D49B376F1943CDCD00408BEF /* popcorn_up.png in Resources */,
@@ -378,7 +369,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DD0FBC1941854D0041C984 /* AppDelegate.m in Sources */,
-				D4DD0FE2194187EC0041C984 /* TopDvdsViewController.m in Sources */,
 				D4DD0FDD194187CF0041C984 /* BoxOfficeViewController.m in Sources */,
 				D49B37FB1944F6AC00408BEF /* Reachability.m in Sources */,
 				D4DD0FFA1941B3160041C984 /* MovieTableViewCell.m in Sources */,

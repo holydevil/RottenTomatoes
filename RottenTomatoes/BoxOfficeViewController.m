@@ -63,6 +63,9 @@
     [super viewDidLoad];
     [self pullToRefresh];
     [self loadDefaults];
+    
+    //hide the loading indicator
+    [self hideHUD];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -185,6 +188,7 @@
         
         if (connectionError) {
             [self showNetworkErrorNotification:@"API not reachable"];
+            [self hideHUD];            
             return;
         }
         
@@ -194,6 +198,8 @@
         // if no values are returned, then show error message
         if (connectionError || !self.moviesData.count) {
             [self showNetworkErrorNotification:@"API didn't return anything"];
+            [self hideHUD];
+            return;
         }
         
         //hide the loading indicator
@@ -214,7 +220,7 @@
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableViewCell"];
+    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableViewCell" forIndexPath:indexPath];
     
     NSDictionary *movie = self.moviesData[indexPath.row];
     

@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "BoxOfficeViewController.h"
-#import "TopDvdsViewController.h"
 
 @implementation AppDelegate
 
@@ -20,19 +19,6 @@
     //Set-up view controllers for box office
     BoxOfficeViewController *boxOfficeViewController = [[BoxOfficeViewController alloc]init];
     UINavigationController *boxOfficeNavigationController = [[UINavigationController alloc] initWithRootViewController:boxOfficeViewController];
-//    boxOfficeNavigationController.tabBarItem.title = @"Box Office";
-//    boxOfficeNavigationController.tabBarItem.image = [UIImage imageNamed:@"add_ticket"];
-
-    //Set-up view controllers for top DVDs
-//    TopDvdsViewController *topDvdsViewController = [[TopDvdsViewController alloc]init];
-//    UINavigationController *topDvdsNavigationController = [[UINavigationController alloc] initWithRootViewController:topDvdsViewController];
-//    topDvdsNavigationController.tabBarItem.title = @"Top DVDs";
-//    topDvdsNavigationController.tabBarItem.image = [UIImage imageNamed:@"music_record"];
-    
-
-    //Set-up tabs for the app.
-//    UITabBarController *tabBarController = [[UITabBarController alloc]init];
-//    [tabBarController setViewControllers:@[boxOfficeNavigationController, topDvdsNavigationController]];
     
     self.window.rootViewController = boxOfficeNavigationController;
     
@@ -41,14 +27,7 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light"  size:17.0f]}];
     //Change font for Navigator bar (back) button
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light"  size:12.0f]} forState:UIControlStateNormal];
-    
-//    NSArray *fonts = [UIFont fontNamesForFamilyName:@"Helvetica Neue"];
-//    for(NSString *string in fonts){
-//        NSLog(@"%@", string);
-//    }
-    
-    
-    
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
