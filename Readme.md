@@ -16,7 +16,7 @@ Completed user stories:
 * [x] Customize the highlight and selection effect of the cell. (optional)
 * [x] Customize the navigation bar. (optional)
 * [x] Add a tab bar for Box Office and DVD. (optional)
-* [x] Add a search bar. (optional)
+* [ ] Add a search bar. (optional)
 
 Aditional:
 
