@@ -18,4 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *audienceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mpaaRatingLabel;
 
+- (void) setMovieCellDetails: (NSDictionary *) movie;
+
 @end

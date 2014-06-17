@@ -22,4 +22,8 @@
     // Configure the view for the selected state
 }
 
+- (void) setMovieCellDetails: (NSDictionary *) movie  {
+    NSLog(@"data in the setMoviewCellDetails function is %@", movie);
+}
+
 @end

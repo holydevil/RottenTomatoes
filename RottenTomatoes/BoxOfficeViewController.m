@@ -9,15 +9,18 @@
 #import "BoxOfficeViewController.h"
 #import "MovieTableViewCell.h"
 #import "MovieDetailsViewController.h"
-#import "UIImageView+AFNetworking.h"
 #import "MBProgressHUD.h"
 #import "Reachability.h"
 #import "CWStatusBarNotification.h"
+#import "UIImageView+WebCache.h"
 
 @interface BoxOfficeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property UIRefreshControl *refreshControl;
 @property NSArray *moviesData;
+
+@property NSUInteger tabIndex;
+@property (weak, nonatomic) IBOutlet UITabBar *boxOfficeTabBar;
 
 //notification bar
 @property CWStatusBarNotification *notification;
@@ -40,8 +43,8 @@
     return self;
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [self.hud hide:YES];
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    [self loadDefaults];
 }
 
 - (void) showHUD {
@@ -51,14 +54,53 @@
     [self.hud show:YES];
 }
 
+- (void) hideHUD {
+    [self.hud hide:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self showHUD];
     [self pullToRefresh];
     [self loadDefaults];
-    [self getDataFromApi];
     // Do any additional setup after loading the view from its nib.
+}
+
+#pragma mark - Load defaults
+- (void) loadDefaults {
+    //find out which tab is selected and set-up values accordingly
+    UITabBarItem *selectedTab = [self.boxOfficeTabBar selectedItem];
+    
+    switch (selectedTab.tag) {
+        case 1:
+            self.title = @"Box Office";
+            self.tabIndex = 1;
+            break;
+        case 2:
+            self.title = @"DVDs";
+            self.tabIndex = 2;
+            break;
+        default:
+            self.title = @"Box Office";
+            self.tabIndex = 1;
+            
+            //set focus on the first tab bar
+            [self.boxOfficeTabBar setSelectedItem:[self.boxOfficeTabBar.items objectAtIndex:selectedTab.tag]];
+            break;
+    }
+    
+    self.tableView.rowHeight = 92;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:@"MovieTableViewCell"];
+    
+    //set notification bar defaults
+    self.notification = [CWStatusBarNotification new];
+    
+    //get data from API once defaults are set
+    [self getDataFromApi];
+    
 }
 
 #pragma mark - Reachability
@@ -69,12 +111,10 @@
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
 
     reach.reachableBlock = ^(Reachability *reach) {
-        NSLog(@"Internet reachable");
         [self hideNetworkErrorNotification];
     };
     
     reach.unreachableBlock = ^(Reachability*reach) {
-        NSLog(@"UNREACHABLE!");
         [self showNetworkErrorNotification:@"Internet not found"];
     };
     
@@ -115,47 +155,56 @@
     [self.tableView addSubview:self.refreshControl];
 }
 
+
 #pragma mark - Call API to get data
 
 - (void) getDataFromApi {
     
-    @try {
-        NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
-//        NSString *url = @"http://127.0.0.1:8080/rotten.json";
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            self.moviesData = [object objectForKey:@"movies"];
-            
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        }];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"API broke");
-    }
-    @finally {
-        self.moviesData = nil;
+    //start the loading indicator
+    [self showHUD];
+    
+    // Choose a API call based on what Tab is selected
+    NSString *url = @"";
+    switch (self.tabIndex) {
+        case 1:
+            url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+            break;
+        case 2:
+            url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+            break;
+        default:
+            url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=6h3yq9mnqksypq27xzkwz9ww";
+            break;
     }
     
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        //top the pull to refresh loading indicator
+        [self.refreshControl endRefreshing];
+        
+        if (connectionError) {
+            [self showNetworkErrorNotification:@"API not reachable"];
+            return;
+        }
+        
+        id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        self.moviesData = [object objectForKey:@"movies"];
+        
+        // if no values are returned, then show error message
+        if (connectionError || !self.moviesData.count) {
+            [self showNetworkErrorNotification:@"API didn't return anything"];
+        }
+        
+        //hide the loading indicator
+        [self hideHUD];
+        
+        [self.tableView reloadData];
+        
+    }];
     
 }
 
-#pragma mark - Load defaults
-- (void) loadDefaults {
-    self.title = @"Box Office";
-    
-    self.tableView.rowHeight = 92;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:@"MovieTableViewCell"];
-    
-    //set notification bar defaults
-    self.notification = [CWStatusBarNotification new];
-    
-}
 
 #pragma mark - Table methods
 

@@ -20,21 +20,21 @@
     //Set-up view controllers for box office
     BoxOfficeViewController *boxOfficeViewController = [[BoxOfficeViewController alloc]init];
     UINavigationController *boxOfficeNavigationController = [[UINavigationController alloc] initWithRootViewController:boxOfficeViewController];
-    boxOfficeNavigationController.tabBarItem.title = @"Box Office";
-    boxOfficeNavigationController.tabBarItem.image = [UIImage imageNamed:@"add_ticket"];
+//    boxOfficeNavigationController.tabBarItem.title = @"Box Office";
+//    boxOfficeNavigationController.tabBarItem.image = [UIImage imageNamed:@"add_ticket"];
 
     //Set-up view controllers for top DVDs
-    TopDvdsViewController *topDvdsViewController = [[TopDvdsViewController alloc]init];
-    UINavigationController *topDvdsNavigationController = [[UINavigationController alloc] initWithRootViewController:topDvdsViewController];
-    topDvdsNavigationController.tabBarItem.title = @"Top DVDs";
-    topDvdsNavigationController.tabBarItem.image = [UIImage imageNamed:@"music_record"];
+//    TopDvdsViewController *topDvdsViewController = [[TopDvdsViewController alloc]init];
+//    UINavigationController *topDvdsNavigationController = [[UINavigationController alloc] initWithRootViewController:topDvdsViewController];
+//    topDvdsNavigationController.tabBarItem.title = @"Top DVDs";
+//    topDvdsNavigationController.tabBarItem.image = [UIImage imageNamed:@"music_record"];
     
 
     //Set-up tabs for the app.
-    UITabBarController *tabBarController = [[UITabBarController alloc]init];
-    [tabBarController setViewControllers:@[boxOfficeNavigationController, topDvdsNavigationController]];
+//    UITabBarController *tabBarController = [[UITabBarController alloc]init];
+//    [tabBarController setViewControllers:@[boxOfficeNavigationController, topDvdsNavigationController]];
     
-    self.window.rootViewController = tabBarController;
+    self.window.rootViewController = boxOfficeNavigationController;
     
     
     //Change font for Navigator bar Title

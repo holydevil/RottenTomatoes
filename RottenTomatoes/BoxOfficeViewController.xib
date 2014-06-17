@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BoxOfficeViewController">
             <connections>
+                <outlet property="boxOfficeTabBar" destination="4s9-cy-OZE" id="zRb-Ly-hos"/>
                 <outlet property="tableView" destination="iNb-3Z-qmj" id="12U-fk-dkQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iNb-3Z-qmj">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -24,17 +25,36 @@
                         <outlet property="delegate" destination="-1" id="bkA-Ng-fcp"/>
                     </connections>
                 </tableView>
+                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4s9-cy-OZE">
+                    <rect key="frame" x="0.0" y="455" width="320" height="49"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem tag="1" title="Box Office" image="add_ticket.png" id="5EI-7r-GOj"/>
+                        <tabBarItem tag="2" title="DVDs" image="music_record.png" id="BeA-am-EPR"/>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="EF0-ae-igy"/>
+                    </connections>
+                </tabBar>
             </subviews>
             <color key="backgroundColor" cyan="0.81000000000000005" magenta="0.76000000000000001" yellow="0.70999999999999996" black="0.56000000000000005" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="iNb-3Z-qmj" secondAttribute="trailing" id="Yng-gt-5Re"/>
-                <constraint firstItem="iNb-3Z-qmj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aCH-1n-NyG"/>
-                <constraint firstItem="iNb-3Z-qmj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ePT-HW-iMq"/>
-                <constraint firstAttribute="bottom" secondItem="iNb-3Z-qmj" secondAttribute="bottom" id="uLV-nL-h3U"/>
+                <constraint firstItem="4s9-cy-OZE" firstAttribute="trailing" secondItem="iNb-3Z-qmj" secondAttribute="trailing" id="1nN-bs-1Bp"/>
+                <constraint firstItem="iNb-3Z-qmj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AKE-Ps-fRc"/>
+                <constraint firstItem="iNb-3Z-qmj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EU1-cx-NkB"/>
+                <constraint firstAttribute="bottom" secondItem="4s9-cy-OZE" secondAttribute="bottom" id="SBs-TT-pfQ"/>
+                <constraint firstItem="4s9-cy-OZE" firstAttribute="top" secondItem="iNb-3Z-qmj" secondAttribute="bottom" id="syF-H3-quo"/>
+                <constraint firstAttribute="trailing" secondItem="iNb-3Z-qmj" secondAttribute="trailing" id="uck-EF-wqC"/>
+                <constraint firstItem="iNb-3Z-qmj" firstAttribute="leading" secondItem="4s9-cy-OZE" secondAttribute="leading" id="w4G-Og-ca8"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="add_ticket.png" width="32" height="32"/>
+        <image name="music_record.png" width="32" height="32"/>
+    </resources>
 </document>
