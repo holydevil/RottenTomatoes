@@ -48,6 +48,25 @@
     
     //load the low res image first
     [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.detailed"] into:self.posterImageView];
+    
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    
+    NSURL *url = [NSURL URLWithString:[self.movieData valueForKeyPath:@"posters.original"]];
+    
+    [manager downloadWithURL:url options:SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+        if (image) {
+            [self.posterImageView setImage:image];
+        }
+    }];
+    
+    // uses AFnetworking async to load images
+//    NSURL *url = [NSURL URLWithString:[self.movieData valueForKeyPath:@"posters.original"]];
+    
+    //TODO: add a place holder image later
+//    UIImage *placeholderImage = [UIImage imageNamed:@"placeholder_image"];
+    
+//    [imageView setImageWithURL:url placeholderImage:placeholderImage];
+    
 
 }
 
@@ -65,7 +84,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     //load the high res poster image after teh view loads
-    [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.original"] into:self.posterImageView];
+//    [self loadImageFromUrl:[self.movieData valueForKeyPath:@"posters.original"] into:self.posterImageView];
 }
 
 - (void)viewDidLoad
